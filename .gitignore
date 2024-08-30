@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Project files to be ignored
+mysql-for-termux/
+.gitignore
+
 # C extensions
 *.so
 

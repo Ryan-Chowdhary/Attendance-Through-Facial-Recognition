@@ -44,7 +44,7 @@ class SimpleFacerec:
         # Find all the faces and face encodings in the current frame of video
         # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
         rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
-        face_locations = face_recognition.face_locations(rgb_small_frame)
+        face_locations = face_recognition.face_locations(rgb_small_frame, model="cnn") # model was originally empty
         face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
         face_names = []
@@ -63,9 +63,10 @@ class SimpleFacerec:
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = self.known_face_names[best_match_index]
-            face_names.append(name)
+            face_names.append([name, face_distances[best_match_index]])
 
         # Convert to numpy array to adjust coordinates with frame resizing quickly
         face_locations = np.array(face_locations)
         face_locations = face_locations / self.frame_resizing
+        # we shall also return the best match index, or the confidence of the model.
         return face_locations.astype(int), face_names
