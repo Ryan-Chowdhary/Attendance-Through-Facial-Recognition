@@ -1,2 +1,2 @@
 # contactless-facial-recog
-Contactless facial recognition system for schools developed during covid time
+Contactless facial attendance system for faster and more efficient head counting

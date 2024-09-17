@@ -24,7 +24,7 @@ def markAttendance(name):
     now = datetime.now()
     tdate = now.date()
     date = f'{date.day}-{date.month}-{date.year}'
-    with open(f'AttendanceRecords/attendance_{date}.csv', ') as f:
+    with open(f'AttendanceRecords/attendance_{date}.csv', 'r+') as f:
         mydatalist = f.readlines()
         namelist = []
         
@@ -52,7 +52,7 @@ def rec_face():
                 (w, h), _ = cv2.getTextSize(name[0] + ':' + name[1], cv2.FONT_HERSHEY_SIMPLEX, 0.6, 1)
                 cv2.rectangle(frame, (x1,y1-20), (x2 + w, y2), (0, 0, 200), 2)
                 # Write the name of the face at the bottom of the rectangle
-                cv2.putText(frame, f'{(name[0].split('_'))[0]}:{name[1]}', (x1, y1-5), cv2.FONT_HERSHEY_COMPLEX, 0.6, (0,0,200), 1, cv2.LINE_AA
+                cv2.putText(frame, f'{(name[0].split('_'))[0]}:{name[1]}', (x1, y1-5), cv2.FONT_HERSHEY_COMPLEX, 0.6, (0,0,200), 1, cv2.LINE_AA)
                 markAttendance(face_names)
             else:
                 (w, h), _ = cv2.getTextSize("unknown"+ ':' + name[1], cv2.FONT_HERSHEY_SIMPLEX, 0.6, 1)
