@@ -10,17 +10,16 @@ add_executable(main main.cpp)
 
 include_directories(
 	"/usr/include/opencv4"
+	$(PROJECT_SOURCE_DIR)/..
 )
 
 target_include_directories(main 
 	INTERFACE
-	"$(PROJECT_SOURCE_DIR)/lib"
 )
 
 target_link_directories(main 
 	PUBLIC 
 	"/usr/lib/x86_64-linux-gnu/"
-    $(CMAKE_PROGRAM_PATH)/lib/
 )
 
 target_link_libraries(main
